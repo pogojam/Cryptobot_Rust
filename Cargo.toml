@@ -1,0 +1,12 @@
+[package]
+name = "cryptobot_rust"
+version = "0.1.0"
+authors = ["pogojam <rlb278@nau.edu>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rocket = "0.4.4"
+ws = { version = "0.8.0", features = ["ssl"]}
+json = "0.12.2"
