@@ -4,29 +4,25 @@ extern crate rocket;
 extern crate ws;
 mod book;
 mod socket;
+mod order;
+
+
 use std::thread;
+use std::sync::mpsc::channel;
 use socket::Socket;
+use book::Book;
 
-macro_rules! testmac {
-    ( $( $i:expr ),* ) => {
-        $(
-            println!("Hi {}",String::from($i))
-        );*
-    };
-}
 
-// fn testmac(input: String) {
-//     println!("{}", input);
-// }
-const Coinbase_wss: &str = "wss://ws-feed.pro.coinbase.com";
 
-#[get("/")]
-fn index() -> &'static str {
-    "Hello, world!"
-}
 
 fn main() {
-    book::add();
-    thread::spawn(|| Socket::init(Coinbase_wss));
-    rocket::ignite().mount("/", routes![index]).launch();
+    // let (tx,rx) = channel();
+    thread::spawn(move || {
+        let CoinBase_Socket = Socket::new("wss://ws-feed.pro.coinbase.com",||println!("hi"));
+        (CoinBase_Socket.controller)();
+        CoinBase_Socket.init();
+    });
+    thread::spawn(|| Book::new());
+    // assert_eq!(rx.recv().unwrap(), 10);
+    // rocket::ignite().mount("/", routes![index]).launch();
 }

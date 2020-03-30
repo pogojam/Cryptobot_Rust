@@ -1,26 +1,18 @@
+use crate::order::Order;
 
-enum Side {
-    bid,
-    ask
+pub struct Book {
+    Bids:Vec<Order>,
+    Sells:Vec<Order>
 }
 
-struct Order{
-    Type:String,
-    Price:i32,
-    Side:Side
-}
-
-// struct Book  {
-//     Bids:[Orders::Bid],
-//     Sells:[Orders::Ask]
-// }
-
-pub fn add (){
-    let mut book = vec![];
-        book.push(Order{
-            Type:"test".to_string(),
-            Price:100,
-            Side:Side::bid
-        })
-
+impl Book {
+    pub fn new ()->Book{
+        Book{
+            Bids:vec![],
+            Sells:vec![]
+        }
+    }
+    pub fn add (&mut self,order:Order){
+            self.Bids.push(order)
+    }
 }
