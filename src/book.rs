@@ -1,18 +1,45 @@
-use crate::order::Order;
+#![allow(dead_code)]
+/*
 
-pub struct Book {
-    Bids:Vec<Order>,
-    Sells:Vec<Order>
+BOOK
+
+Methods:
+    Add: Adds trade to book.
+    remove: Removes trade from book.
+    get: Gets trade from book. 
+
+Struct:
+    : Holds trades
+*/
+
+
+use std::thread;
+use std::collections::HashMap;
+use crate::order::Order;
+// use fnv::FnvHashMap;
+
+
+#[derive(Debug)]
+pub struct Trade {
+    Price:i32
 }
 
-impl Book {
+#[derive(Debug)]
+pub struct Book  {
+    Bids:HashMap<i32,Trade>,
+    Asks:HashMap<i32,Trade>
+}
+
+
+impl  Book {
     pub fn new ()->Book{
         Book{
-            Bids:vec![],
-            Sells:vec![]
+            Bids:HashMap::new(),
+            Asks:HashMap::new()
         }
     }
-    pub fn add (&mut self,order:Order){
-            self.Bids.push(order)
-    }
+    // pub fn add (&mut self,order:Order){
+    //         self.Bids
+    // }
+    // thread::spawn(|| Book::new());
 }

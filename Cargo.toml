@@ -8,5 +8,6 @@ edition = "2018"
 
 [dependencies]
 rocket = "0.4.4"
-ws = { version = "0.8.0", features = ["ssl"]}
+ws = "0.9.1"
 json = "0.12.2"
+fnv= "1.0.6"

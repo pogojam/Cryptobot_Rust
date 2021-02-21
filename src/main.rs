@@ -1,4 +1,5 @@
 #![feature(proc_macro_hygiene, decl_macro)]
+#![allow(dead_code,u)]
 #[macro_use]
 extern crate rocket;
 extern crate ws;
@@ -22,7 +23,10 @@ fn main() {
         (CoinBase_Socket.controller)();
         CoinBase_Socket.init();
     });
-    thread::spawn(|| Book::new());
+    let MainBook =  Book::new();
+    println!("{} of {:b} people know binary, the other half doesn't", 1, 2);
+
+    println!("HAHHHHHHHHHHHHHHH{:?}",MainBook)
     // assert_eq!(rx.recv().unwrap(), 10);
     // rocket::ignite().mount("/", routes![index]).launch();
 }
